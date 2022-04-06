@@ -171,9 +171,15 @@ const timer = function () {
 
 // sözlük işlemleri
 const table = document.querySelector("table");
+// helper function for deleting table rows
+function deleteRow(rowid) {
+  var row = document.getElementById(rowid);
+  row.parentElement.parentElement.remove();
+}
+
+function deleteFromJSON() {}
 
 const createTable = function (words) {
-  console.log(words);
   const root = document.getElementById("root");
   words.forEach((element, i) =>
     root.insertAdjacentHTML(
@@ -187,12 +193,8 @@ const createTable = function (words) {
   );
 
   const imgs = document.querySelectorAll(".delete");
-  console.log(imgs);
 
   for (let img of imgs) {
-    img.addEventListener("click", (e) => {
-      console.log(e.target.id);
-      table.deleteRow(+e.target.id.slice(-1));
-    });
+    img.addEventListener("click", (e) => deleteRow(e.target.id));
   }
 };
